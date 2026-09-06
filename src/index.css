@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-space: var(--deep-space);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-vivid-magenta: var(--vivid-magenta);
+  --color-lime-green: var(--lime-green);
+  --color-cool-gray: var(--cool-gray);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-card: var(--surface-card);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-card: var(--border-card);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-warning: var(--warning);
+  --color-caution: var(--caution);
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --deep-space: #F1F5F9;
+  --neon-cyan: #0891B2;
+  --vivid-magenta: #DB2777;
+  --lime-green: #16A34A;
+  --cool-gray: #64748B;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-hover: rgba(255, 255, 255, 1);
+  --surface-card: #FFFFFF;
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-card: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --warning: #EAB308;
+  --caution: #F97316;
+}
+
+:root.dark {
+  --deep-space: #0B0E14;
+  --neon-cyan: #00F5FF;
+  --vivid-magenta: #FF007A;
+  --lime-green: #00FF00;
+  --cool-gray: #A0AEC0;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  --surface-card: rgba(255, 255, 255, 0.05);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-card: rgba(255, 255, 255, 0.1);
+  --text-primary: #FFFFFF;
+  --text-secondary: #E2E8F0;
+  --text-muted: #94A3B8;
+  --warning: #FACC15;
+  --caution: #FB923C;
+}
+
+@layer base {
+  body {
+    @apply bg-deep-space text-text-secondary font-sans antialiased transition-colors duration-300;
+    background-image: 
+      radial-gradient(circle at 2px 2px, var(--border-subtle) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface backdrop-blur-xl border border-border-subtle transition-all duration-300;
+  }
+  
+  .card {
+    @apply bg-surface-card border border-border-card rounded-3xl shadow-sm transition-all duration-300;
+  }
+  
+  .neon-glow-cyan {
+    box-shadow: 0 0 10px rgba(8, 145, 178, 0.1);
+  }
+  
+  .dark .neon-glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+  }
+  
+  .neon-glow-magenta {
+    box-shadow: 0 0 10px rgba(219, 39, 119, 0.1);
+  }
+  
+  .dark .neon-glow-magenta {
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.3);
+  }
+  
+  .neon-glow-green {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  }
+
+  .cyber-grid {
+    background-size: 50px 50px;
+    background-image:
+      linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  }
+}
+
+/* Custom scrollbar for cyber look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-hover);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* React Flow Custom Styles */
+.react-flow__node {
+  @apply !rounded-xl !border-none !shadow-none;
+}
+
+.react-flow__handle {
+  @apply !w-2 !h-2 !bg-neon-cyan !border-none;
+}
+
+.react-flow__edge-path {
+  @apply !stroke-cool-gray !stroke-[2];
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  @apply !stroke-neon-cyan;
+}
+
+.react-flow__controls {
+  @apply !bg-surface !backdrop-blur-xl !border-border-subtle !rounded-lg;
+}
+
+.react-flow__controls-button {
+  @apply !border-none !bg-transparent hover:!bg-surface-hover;
+}
+
+.react-flow__controls-button svg {
+  @apply !fill-text-secondary;
+}

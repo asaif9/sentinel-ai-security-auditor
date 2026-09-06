@@ -1,0 +1,70 @@
+# Gemini Configuration for Sentinel AI Security Auditor
+
+version: "1.1"
+project:
+  name: "Sentinel AI Security Auditor"
+  description: "Zero-Trust Autonomous AI AppSec Auditor, Threat Modeling & Security Testing Suite"
+  type: "full-stack"
+  framework: "React 19 + Express 4 + Vite 6"
+
+models:
+  primary_reasoning: "gemini-3.1-pro-preview"
+  fast_inference: "gemini-3.8-flash"
+  telemetry_evaluator: "gemini-3-flash-preview"
+  sdk: "@google/genai"
+
+capabilities:
+  - MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API
+
+agent_tools:
+  declarations_file: "server/agentTools.ts"
+  orchestrator_file: "server/mcpOrchestrator.ts"
+  tools:
+    - name: "trigger_crawl"
+      agent: "Deep-Crawler"
+      description: "Asset and endpoint discovery via Scrapy / Crawl4AI"
+    - name: "run_idor_fuzz"
+      agent: "Infiltrator-X"
+      description: "IDOR and cross-tenant boundary fuzzing probe"
+    - name: "simulate_jwt_tamper"
+      agent: "API-Guardian / Crypto-Cracker"
+      description: "JWT signature and claim manipulation testing"
+    - name: "run_owasp_scan"
+      agent: "Ghost-Scan"
+      description: "Automated scan across OWASP Top 10 vulnerability categories"
+    - name: "verify_vulnerability_exploit"
+      agent: "Vuln-Hunter"
+      description: "Exploit reproducibility and impact validation"
+
+flow_engine:
+  sync_file: "server/flowSyncEngine.ts"
+  chat_drawer: "src/components/FlowAIChatDrawer.tsx"
+  endpoints:
+    - "/api/flows/generate-from-text"
+    - "/api/flows/chat-plan"
+    - "/api/flows/scenarios"
+    - "/api/flows/audit"
+
+security:
+  secret_handling: "server-only"
+  secret_manager:
+    enabled: true
+    secret_name: "GEMINI_API_KEY"
+  input_sanitization:
+    prompt_injection_guard: true
+    ephemeral_redaction: true
+    max_input_length: 4000
+  client_bundle_exposure: "strictly_forbidden"
+
+runtime:
+  port: 3000
+  host: "0.0.0.0"
+  dev_command: "tsx server.ts"
+  build_command: "vite build"
+  environment_file: ".env.example"
+
+database:
+  provider: "firestore"
+  config_file: "firebase-applet-config.json"
+  rules_file: "firestore.rules"
+  blueprint_file: "firebase-blueprint.json"

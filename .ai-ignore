@@ -1,0 +1,39 @@
+# Dependencies and package managers
+node_modules/
+bun.lock
+package-lock.json
+
+# Build outputs and temporary caches
+dist/
+build/
+coverage/
+.cache/
+*.tsbuildinfo
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Environment variables and credentials
+.env
+.env.local
+.env.*.local
+!.env.example
+*.pem
+*.key
+*.cert
+
+# Temporary audit outputs, test outputs, and log files
+*.log
+results.txt
+grep_results.txt
+*.tmp
+
+# Operating system and editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
