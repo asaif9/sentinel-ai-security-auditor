@@ -171,6 +171,7 @@ All agent data operates against the schema defined in `firebase-blueprint.json` 
 - `/tasks/{taskId}`: Task status, steps, tool traces, and findings.
 - `/vulnerabilities/{vulnId}`: Vulnerability findings, OWASP taxonomy, PoC requests/responses, and remediation.
 - `/alerts/{alertId}`: Real-time threat alerts feed.
+- `/users/{userId}/entries/{entryId}`: Multi-tenant user journal reflection partitioned by userId.
 - `/users/{userId}/alerts/{alertId}`: Tenant-partitioned security alerts (including blocked adversarial prompt attempts).
 - `/messages/{messageId}`: Inter-agent message bus.
 - `/threat_journal/{journalId}`: Architectural threat assessments.
@@ -207,4 +208,7 @@ In addition to autonomous background audits, Sentinel AI provides an interactive
 - `GET /api/flows/scenarios`: Predefined dynamic attack scenarios listing.
 - `POST /api/flows/audit`: Flow-to-Audit adversarial injection simulation.
 - `POST /api/security/threat-journal/analyze`: Sentinel-Prime threat journal analyzer with Ephemeral Redaction.
+- `POST /api/journal/reflect`: PersonalJournal reflection & insight generation with prompt firebreak and Ephemeral Redaction.
+- `GET /api/journal/entries`: User-isolated journal entries retrieval.
+- `DELETE /api/journal/entries/:id`: User journal entry deletion.
 - `POST /api/security/test-multitenancy`: 6-step multi-tenant zero-trust isolation verification.

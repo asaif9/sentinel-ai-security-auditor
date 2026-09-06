@@ -289,6 +289,9 @@ All agent operations are secured via `firestore.rules` and structured according 
 | `/api/security/threat-journal/analyze` | POST | `promptFirebreak` | Threat journal analysis with Ephemeral Redaction. |
 | `/api/security/threat-journal` | GET | None | Retrieve architectural threat journal entries. |
 | `/api/security/threat-journal/:id` | DELETE | None | Delete an architectural threat entry. |
+| `/api/journal/reflect` | POST | `promptFirebreak` | PersonalJournal reflection with AI Studio instructions & Ephemeral Redaction. |
+| `/api/journal/entries` | GET | None | Retrieve user's isolated journal reflections (`/users/{uid}/entries`). |
+| `/api/journal/entries/:id` | DELETE | None | Delete user's isolated journal reflection document. |
 | `/api/security/constitution` | GET | None | Security constitution and cloud architecture specs. |
 | `/api/security/secret-manager-proof` | GET | None | Verify zero client-side secret exposure and key provenance. |
 | `/api/security/test-multitenancy` | POST | None | 6-step zero-trust multi-tenancy verification suite. |

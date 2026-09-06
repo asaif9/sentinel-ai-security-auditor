@@ -131,6 +131,7 @@ By combining Google Gemini models (`gemini-3.8-flash` for server-side MCP agent 
 │   │   ├── McpTraceTerminal.tsx        # Live MCP tool execution trace terminal
 │   │   ├── MultiTenancyCheckModal.tsx  # 6-step zero-trust verification test suite
 │   │   ├── PatchModal.tsx              # Multi-framework unified Git diff patch modal
+│   │   ├── PersonalJournal.tsx         # Personal reflection companion with AI Studio instructions
 │   │   ├── ResultDeviationEngine.tsx   # Expected vs. actual drift comparator
 │   │   ├── SitemapAttackSurfaceGraph.tsx # D3-powered force-directed sitemap graph
 │   │   ├── SynthesizedExploitChainCard.tsx# Compound exploit chain visualizer
@@ -181,6 +182,11 @@ The Express server (`server.ts`) exposes the following endpoints on port `3000`:
 - `POST /api/security/threat-journal/analyze`: Analyzes design entries with Sentinel-Prime, applying Ephemeral Redaction and Prompt Injection Firebreaks.
 - `GET /api/security/threat-journal`: Retrieves recent architectural threat journal entries.
 - `DELETE /api/security/threat-journal/:id`: Deletes an architectural threat entry.
+
+### Personal Gemini Journal (`PersonalJournal`)
+- `POST /api/journal/reflect`: Generates engineering & personal reflection insights using AI Studio custom instructions, prompt injection firebreak, and Ephemeral Redaction data minimization.
+- `GET /api/journal/entries`: Retrieves user's isolated journal entries (`/users/{uid}/entries`).
+- `DELETE /api/journal/entries/:id`: Deletes a user journal entry from their isolated partition.
 
 ### Agent Coordination, Tasks & Alerts
 - `POST /api/agents/register`: Registers or heartbeats an agent in Firestore.
